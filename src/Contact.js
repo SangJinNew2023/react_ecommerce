@@ -66,7 +66,7 @@ const Contact = () => {
             cols="30" 
             rows="10"
             required
-            autoComplete="off"
+            autoComplete="off" 
             placeholder="Enter your message"
             ></textarea>
             <input type="submit" value="send" />

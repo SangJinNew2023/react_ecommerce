@@ -8,7 +8,7 @@ const Footer = () => {
   return (
     <>
     <Wrapper>
-        <section classname="contact-short">
+        <section className="contact-short">
             <div className="contact-short">
                 <div className="grid grid-two-column">
                     <div>
@@ -34,10 +34,10 @@ const Footer = () => {
 
                 <div className="footer-subscribe">
                     <h3>Subscribe to get important updates</h3>
-                    <from action="#">
+                    <form action="#">
                         <input type="email" placeholder="your e-mail" />
                         <input type="submit" value="subscribe" />
-                    </from>
+                    </form>
                 </div>
 
                 <div className="footer-social">
