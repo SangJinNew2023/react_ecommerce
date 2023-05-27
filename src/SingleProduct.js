@@ -1,20 +1,26 @@
+import { useEffect} from 'react';
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
-import { useEffect} from 'react';
 import { useProductContext } from "./context/productcontext";
 import PageNavigation from "./components/PageNavigation";
 import MyImage from "./components/MyImage";
 import {Container} from "./styles/Container";
+import FormatPrice from "./helpers/FormatPrice";
 import {TbTruckDelivery, TbReplace} from "react-icons/tb";
 import { MdSecurity } from "react-icons/md";
-import FormatPrice from "./helpers/FormatPrice";
+
 
 const API = "https://api.pujakaitem.com/api/products";
 
+
+
 const SingleProduct = () => {
   const { getSingleProduct, isSingleLoading, singleProduct } = useProductContext();
-  console.log(singleProduct );
-  const { id } = useParams(); //get id form url
+
+  console.log(isSingleLoading );
+
+  const { id } = useParams(); //get id from url
+  console.log(id);
 
   const {
     id: alias,
@@ -24,8 +30,8 @@ const SingleProduct = () => {
     description,
     category,
     stock,
-    stars,
     reviews,
+    stars,
     image,
   } = singleProduct;
 
@@ -42,9 +48,11 @@ const SingleProduct = () => {
       <Container className="container">
         <div className="grid grid-two-column">
           {/* product Images */}
+
           <div className="product-images">
           <MyImage imgs={image} />
           </div>
+          
           {/* product dAta */}
           <div className="product-data">
             <h2>{name}</h2>
@@ -60,6 +68,7 @@ const SingleProduct = () => {
               Deal fo the Day: <FormatPrice price={price} />
             </p>
             <p>{description}</p>
+
             <div className="product-data-warranty">
 
               <div className="product-warranty-data">
@@ -81,26 +90,26 @@ const SingleProduct = () => {
                 <MdSecurity className="warranty-icon" />
                 <p>2 Year Warranty</p>
               </div>
+            </div>
 
-              <div className="product-data-info">
-                <p>
-                  Available:
-                  <span>{ stock > 0 ? "In Stock" : "Not Available"} </span>
-                </p>
-                <p>
-                  ID : <span> {id} </span>
-                </p>
-                <p>
-                  Brand:<span> {company} </span>
-                </p>
-              </div>
+            <div className="product-data-info">
+              <p>
+                Available:
+                <span> { stock > 0 ? "In Stock" : "Not Available"} </span>
+              </p>
+              <p>
+                ID : <span> {id} </span>
+              </p>
+              <p>
+                Brand:<span> {company} </span>
+              </p>
             </div>
           </div>
         </div>
       </Container>
     </Wrapper>
-  ) 
-}
+  );
+};
 
 const Wrapper = styled.section`
   .container {
