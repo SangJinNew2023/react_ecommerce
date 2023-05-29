@@ -17,15 +17,15 @@ const ProductReducer = (state, action) => {
     //     )
     // }
 
-    switch (action.type) {
+    switch (action.type) { //dispactch로 전달된 action.type에 따른 반환 값을 달리함
         case "SET_LOADING":
            return {
-            ...state,
+            ...state, //기본 state에 isLoading: true를 추가
             isLoading: true,
            };
 
         case "SET_API_DATA":
-            const featureData = action.payload.filter((curElem)=> {
+            const featureData = action.payload.filter((curElem)=> { //payload에서 curElem에 해당하는 data 반환
                 return curElem.featured === true;
             });
 

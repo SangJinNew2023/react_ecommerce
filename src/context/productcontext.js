@@ -1,6 +1,7 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
+import React, { createContext, useContext, useEffect, useReducer } from "react";
 import axios from "axios";
 import reducer from "../reducer/productReducer";
+
 
 //createContext, useReducer를 사용할때 부모로부터 하위간의 레벨이 많은 경우 
 //props로 dispatch를 계속 넘겨야하는 점을 보완

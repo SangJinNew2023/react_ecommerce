@@ -5,8 +5,7 @@ import Product from "./Product"
 
 
 const FeatureProduct = () => {
-  const { isLoading, featureProducts } = useProductContext(); // useContext(AppContext)
-  console.log(featureProducts);
+  const { isLoading, featureProducts } = useProductContext(); // useContext(AppContext) from productcontext.js
   console.log(isLoading);
 
   if (isLoading) {
@@ -23,7 +22,7 @@ const FeatureProduct = () => {
               return ( 
               console.log(curElem),
     
-              <Product  key={curElem.id} {...curElem} />
+              <Product  key={curElem.id} {...curElem} /> //send to Product component
               )
           })};
         </div>

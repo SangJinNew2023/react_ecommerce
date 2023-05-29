@@ -1,3 +1,4 @@
+import React from "react";
 import { useEffect} from 'react';
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
@@ -8,7 +9,7 @@ import {Container} from "./styles/Container";
 import FormatPrice from "./helpers/FormatPrice";
 import {TbTruckDelivery, TbReplace} from "react-icons/tb";
 import { MdSecurity } from "react-icons/md";
-
+import Star from "./components/Star";
 
 const API = "https://api.pujakaitem.com/api/products";
 
@@ -56,6 +57,7 @@ const SingleProduct = () => {
           {/* product dAta */}
           <div className="product-data">
             <h2>{name}</h2>
+            <Star stars={stars} reviews={reviews} />
             <p>{stars}</p>
             <p>{reviews} reviews</p>
             <p className="product-data-price">
@@ -82,7 +84,7 @@ const SingleProduct = () => {
               </div>
 
               <div className="product-warranty-data">
-                <TbTruckDelivery className="warranty-icon" />
+                <TbTruckDelivery className="warranty-icon" />W
                 <p>Fast Delivery</p>
               </div>
 

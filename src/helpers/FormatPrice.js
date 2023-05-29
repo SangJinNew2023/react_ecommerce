@@ -1,3 +1,5 @@
+import React from "react";
+
 //Intl.NumberFormat 모듈 사용해서 가격 표시 
 const FormatPrice = ({ price }) => {
     return Intl.NumberFormat("en-US", { 
