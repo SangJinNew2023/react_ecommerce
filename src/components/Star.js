@@ -4,14 +4,15 @@ import { AiOutlineStar } from "react-icons/ai";
 import styled from "styled-components";
 
 const Star = ({ stars, reviews }) => {
-    const ratingStart = Array.from({ length: 5 }, (elem, index) => {
-        let number = index + 0.5;
+    const ratingStart = Array.from({ length: 5 }, (elem, index) => {//length가 5이고 [1,2,3,4,5] array 생성 후 index(0,1,2,3,4)를 차례대로 반환
+      console.log(index);  
+      let number = index + 0.5;
 
         return (
             <span key={index}>
-                {stars >= index + 1 ? (
+                {stars >= index + 1 ? ( //stars index +1 즉(1,2,3,4,5)과 같거나 크면 꽉찬 별 1개
                 <FaStar className="icon" />
-                ) : stars >= number ? (
+                ) : stars >= number ? (  //아니면 starts가 number(0.5,1.5,2.5,3.5,4.5,5.5)와 같거나 큰지 비교 true이면 FaStarHalfAlt(반별) 1개 아니면 AiOutlineStar
                 <FaStarHalfAlt className="icon" />
                 ) : (
                 <AiOutlineStar className="icon" />
