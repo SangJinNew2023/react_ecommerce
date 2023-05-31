@@ -12,7 +12,7 @@ const Star = ({ stars, reviews }) => {
             <span key={index}>
                 {stars >= index + 1 ? ( //stars index +1 즉(1,2,3,4,5)과 같거나 크면 꽉찬 별 1개
                 <FaStar className="icon" />
-                ) : stars >= number ? (  //아니면 starts가 number(0.5,1.5,2.5,3.5,4.5,5.5)와 같거나 큰지 비교 true이면 FaStarHalfAlt(반별) 1개 아니면 AiOutlineStar
+                ) : stars >= number ? (  //아니면 stars가 number(0.5,1.5,2.5,3.5,4.5,5.5)와 같거나 큰지 비교 true이면 FaStarHalfAlt(반별) 1개 아니면 AiOutlineStar
                 <FaStarHalfAlt className="icon" />
                 ) : (
                 <AiOutlineStar className="icon" />
