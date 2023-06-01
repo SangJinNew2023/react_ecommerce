@@ -16,16 +16,19 @@ const ProductReducer = (state, action) => {
     //         state
     //     )
     // }
-
-    switch (action.type) { //dispactch로 전달된 action.type에 따른 반환 값을 달리함
+    //dispactch로 전달된 action.type에 따른 return 값 
+    switch (action.type) { 
+        //initial state와 islodaing: true 전달, api로 부터 data를 받아는 단계
         case "SET_LOADING":
            return {
-            ...state, //기본 state에 isLoading: true를 추가
+            ...state, 
             isLoading: true,
            };
-
+        
+        //productconext.js에서 전달받은 action.payload.products 중 featured===ture인것만 featureProducts에 담고
+        //{...state, isLoading: false, products: action.payload, featureProducts: featureData} 형태로 반환
         case "SET_API_DATA":
-            const featureData = action.payload.filter((curElem)=> { //payload에서 curElem에 해당하는 data 반환
+            const featureData = action.payload.filter((curElem)=> {  //curElem은 products data 중 featured===ture 인것만 담아 반환 
                 return curElem.featured === true;
             });
 
