@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import FilterSection from "./components/FilterSection";
+// import FilterSection from "./components/FilterSection";
 import Sort from "./components/Sort";
 import ProductList  from "./components/ProductList";
-import { useFilterContext } from "./context/filter_context";
+// import { useFilterContext } from "./context/filter_context";
 
 const Products = () => {
   return(
@@ -14,7 +14,7 @@ const Products = () => {
         </div>
         <section className="product-view--sort">
           <div className="sort-filter">
-            {/* <Sort /> */}
+            <Sort />
           </div>
           <div className="main-product">
             <ProductList />

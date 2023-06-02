@@ -3,10 +3,10 @@ import {useProductContext} from '../context/productcontext'
 import styled from "styled-components"
 import Product from "./Product"
 
-
+// context를 사용해서 isLoading, featureProducts의 data를 전달 받고 featureProducts를 curElem 변수에 담아 Product.js로 전달
 const FeatureProduct = () => {
+  
   const { isLoading, featureProducts } = useProductContext(); // useContext(AppContext) from productcontext.js
-  console.log(isLoading);
 
   if (isLoading) {
     return <div>....Loading</div>;

@@ -17,13 +17,14 @@ const API = "https://api.pujakaitem.com/api/products";
 
 
 const SingleProduct = () => {
+  //context/productcontext.js의 useContext(AppContext)를 반환하는 useProductContext() custom hook를 호출 후 
+//AppProvider에 정의된 value 값에서 필요한 데이터를 호출해 사용한다. 
   const { getSingleProduct, isSingleLoading, singleProduct } = useProductContext();
 
-  console.log(isSingleLoading );
-
   const { id } = useParams(); //get id from url
-  console.log(id);
 
+
+  //AppProvider sigleProduct 
   const {
     id: alias,
     name,
@@ -35,7 +36,7 @@ const SingleProduct = () => {
     reviews,
     stars,
     image,
-  } = singleProduct;
+  } = singleProduct; 
 
   useEffect(() => {
     getSingleProduct(`${API}?id=${id}`); //from productcontext.js
@@ -55,7 +56,7 @@ const SingleProduct = () => {
           <MyImage imgs={image} />
           </div>
           
-          {/* product dAta */}
+          {/* product data */}
           <div className="product-data">
             <h2>{name}</h2>
             <Star stars={stars} reviews={reviews} />

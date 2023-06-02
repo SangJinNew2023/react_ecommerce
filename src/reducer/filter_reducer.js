@@ -8,13 +8,28 @@ const filterReducer = (state, action) => {
                 all_products: [...action.payload],
             };
         
-        case "SET_GIRDVIEW":
+        case "SET_GRID_VIEW":
             return {
                 ...state,
                 grid_view: true,
             };
 
-        default: return state
+
+        case "SET_LIST_VIEW":
+            return {
+                ...state,
+                grid_view: false,
+            };
+            
+        case "GET_SORT_VALUE":
+            let userSortValue = document.getElementById("sort"); //"sort" is form sort.js
+            let sort_value = userSortValue.options[userSortValue.selectedIndex].value; // value is from <option> in sort.js
+            return {
+                ...state, 
+                sorting_value: sort_value,
+            };
+
+        default: return state;
     }
 
 };

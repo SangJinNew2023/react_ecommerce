@@ -3,7 +3,7 @@ import Product from "./Product";
 import styled from "styled-components";
 
 
-const GridView = ({ products }) => {
+const GridView = ({ products }) => { //products is from ProductList.js
   return (
     <Wrapper className="section">
         <div className="container grid grid-three-column">
@@ -61,7 +61,7 @@ const Wrapper = styled.section`
         border-radius: 1rem;
 
         .card-data {
-            padding: 0 1rem;
+            padding: 0 1rem; 
         }
         .car-data-flex {
             margin: 2rem 0;
