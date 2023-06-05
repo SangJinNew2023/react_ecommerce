@@ -27,15 +27,14 @@ const AppProvider = ({ children }) => {
     //context provider내부에 useReducer를 사용 action에 따른 결과값 return 후 state 값을 동적으로 변경
     const [state, dispatch] = useReducer(reducer, initialState); 
     
-    // api로 부터 모든 products data 받아오는 함수
+    // api로 부터 모든 products data 받아와 dispacth로 전달
     const getProducts = async(url) => {
         dispatch({type: "SET_LOADING" });
         try {
             const res = await axios.get(url);
             const products = await res.data;
-            console.log("products", products);
             
-            //type: action , payload:는 state를 변경 할 data로 reducer에게 전송
+            //type: action , payload: products를 reducer로 전달
             dispatch({ type:"SET_API_DATA", payload: products }); 
         } catch (error) {
             dispatch({ type:"API_ERROR" });

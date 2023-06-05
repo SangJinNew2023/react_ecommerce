@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink } from'react-router-dom'
 import FormatPrice from "../helpers/FormatPrice";
 
-const Product = (curElem) => {
+const Product = (curElem) => { //curElem is form FeatureProduct.js
     const { id, name, image, price, category } = curElem;
 
   return (

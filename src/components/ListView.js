@@ -4,7 +4,7 @@ import FormatPrice from "../helpers/FormatPrice";
 import { NavLink } from "react-router-dom";
 import { Button } from "../styles/Button";
 
-const ListView = ({ products }) => {
+const ListView = ({ products }) => { //products is from ProductList.js
   return (
     <Wrapper className="section">
         <div className="container grid">
@@ -31,8 +31,7 @@ const ListView = ({ products }) => {
                 );
             })};
         </div>
-    </Wrapper>
-    
+    </Wrapper>   
   )
 }
 

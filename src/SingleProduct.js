@@ -24,7 +24,7 @@ const SingleProduct = () => {
   const { id } = useParams(); //get id from url
 
 
-  //AppProvider sigleProduct 
+  //AppProvider에서 받은 value={...state}포함된 sigleProduct값을 전달 받은 후 object형태로 대입 후 사용
   const {
     id: alias,
     name,
@@ -38,6 +38,8 @@ const SingleProduct = () => {
     image,
   } = singleProduct; 
 
+  //useParams()를 통해 얻은 id정보를 기본API 주소에 더한 후 id에 해당하는 data만 서버로 부터 전달 받아 사용
+  //useEffect() hook을 통해 처음 렌더링 시만 호출해서 정보를 받아온다.
   useEffect(() => {
     getSingleProduct(`${API}?id=${id}`); //from productcontext.js
   }, []);
