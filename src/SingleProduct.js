@@ -88,7 +88,7 @@ const SingleProduct = () => {
               </div>
 
               <div className="product-warranty-data">
-                <TbTruckDelivery className="warranty-icon" />W
+                <TbTruckDelivery className="warranty-icon" />
                 <p>Fast Delivery</p>
               </div>
 

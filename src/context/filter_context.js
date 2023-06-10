@@ -11,14 +11,19 @@ const initialState = {
     all_products: [],
     grid_view: true,
     sorting_value: "lowest",
-
-
+    filters: {
+        text: "",
+        category: "all",
+        company: "all",
+        color:"all",
+    },
 };
 
 //context provider 생성 및 initial value 설정
 export const FilterContextProvider = ({children}) => { 
     const { products } = useProductContext(); //useProductContext()를 통해 prudcts data에 불러옴
     
+    //context provider내부에 useReducer를 사용 action에 따른 결과값 return 후 state 값을 동적으로 변경
     const [state, dispatch] = useReducer(reducer, initialState);
 
 //to set the grid vieww
@@ -37,6 +42,14 @@ export const FilterContextProvider = ({children}) => {
         dispatch({ type: "GET_SORT_VALUE", payload: userValue});
     };
 
+    //update the filter values
+    const updateFilterValue =(event) => {
+        let name = event.target.name;
+        let value = event.target.value;
+
+        return dispatch({type:"UPDATE_FILTERS_VALUE", payload: { name, value } });
+    };
+
     //to sort the product
     useEffect(() => {
         dispatch({ type: "FILTER_PRODUCTS" });
@@ -49,7 +62,7 @@ export const FilterContextProvider = ({children}) => {
     }, [products]);
 
     return (
-        <FilterContext.Provider value={{...state, setGridView, setListView, sorting}}>
+        <FilterContext.Provider value={{...state, setGridView, setListView, sorting, updateFilterValue}}>
             {children}
         </FilterContext.Provider>
     );

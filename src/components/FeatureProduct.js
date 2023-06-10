@@ -20,8 +20,6 @@ const FeatureProduct = () => {
         <div className="grid grid-three-column">
           { featureProducts.map((curElem) => {
               return ( 
-              console.log(curElem),
-    
               <Product  key={curElem.id} {...curElem} /> //send to Product component
               )
           })};

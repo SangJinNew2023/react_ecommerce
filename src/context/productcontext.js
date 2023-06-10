@@ -24,6 +24,7 @@ const initialState = {
 
 // context provider 생성
 const AppProvider = ({ children }) => {
+    
     //context provider내부에 useReducer를 사용 action에 따른 결과값 return 후 state 값을 동적으로 변경
     const [state, dispatch] = useReducer(reducer, initialState); 
     
