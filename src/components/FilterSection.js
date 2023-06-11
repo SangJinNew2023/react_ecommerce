@@ -1,12 +1,16 @@
 import React from 'react'
 import { useFilterContext } from "../context/filter_context";
-import styled from "styled-components"
+import styled from "styled-components";
+import { FaCheck } from "react-icons/fa";
+import FormatPrice from "../helpers/FormatPrice";
+import {Button} from "../styles/Button";
 
 const FilterSection = () => {
   const { 
-    filters: { text, category, color },
+    filters: { text, category, color, price, maxPrice, minPrice },
     all_products, 
     updateFilterValue,
+    clearFilters,
   } = useFilterContext();
 
   //to get the unique data of each fields
@@ -107,13 +111,30 @@ const FilterSection = () => {
                 type="button"
                 value={curColor}
                 name="color"
-                className="btnStyle"
+                className={ color === curColor ? "btnStyle active" : "btnStyle" }
                 onClick={updateFilterValue}
                 style={{ backgroundColor: curColor }}>
-                {color === curColor ? "" : null}
+                {color === curColor ? <FaCheck className="checkStyle" /> : null}
               </button>
             )}
           )}
+        </div>
+        < div className="filter_price">
+          <h3>Price</h3>
+          <p><FormatPrice price={price} /></p>
+          <input 
+          type="range" 
+          name="price"
+          min={minPrice} 
+          max={maxPrice} 
+          value={price} 
+          onChange={updateFilterValue} 
+          />
+        </div>
+        <div className="filter-clear">
+              <Button className="btn" onClick={clearFilters}> 
+              clear Filters
+              </Button>
         </div>
       </div>
     </Wrapper>

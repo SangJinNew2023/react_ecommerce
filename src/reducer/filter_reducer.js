@@ -1,11 +1,25 @@
 const filterReducer = (state, action) => {
     switch(action.type) {
-
         case "LOAD_FILTER_PRODUCTS":
+            //1way
+            // let priceArr = action.payload.map((curElem) => curElem.price) //각각의 price를 priceArr에 대입
+            //console.log(Math.max.apply(null, priceArr)) apply를 사용해 priceArr을 입력으로 받음
+
+            //2way
+            // let priceArr = action.payload.map((curElem) => curElem.price) //각각의 price를 priceArr에 대입
+            // let maxprice = priceArr.reduce((initiaVal, curElem) => 
+            //     Math.max(initialVal, curVal)
+            // ;)
+
+            //3way
+            let priceArr = action.payload.map((curElem) => curElem.price) //각각의 price를 priceArr에 대입
+            let maxPrice = Math.max(...priceArr);
+
             return {
                 ...state,
                 filter_products: [...action.payload],
                 all_products: [...action.payload],
+                filters: {...state.filters, maxPrice, price: maxPrice},
             };
         
         case "SET_GRID_VIEW":
@@ -73,7 +87,7 @@ const filterReducer = (state, action) => {
             let {all_products } = state;
             let tempFilterProduct = [...all_products];
 
-            const { text, category, company, color} = state.filters;
+            const { text, category, company, color, price} = state.filters;
 
             if(text) {
                 tempFilterProduct = tempFilterProduct.filter((curElem) => {
@@ -99,16 +113,41 @@ const filterReducer = (state, action) => {
                     );
             };
 
+            if(price === 0) {
+                tempFilterProduct = tempFilterProduct.filter(
+                    (curElem) => curElem.price == price
+                );
+            } else {
+                tempFilterProduct = tempFilterProduct.filter(
+                    (curElem) => curElem.price <= price
+                );
+            }                   
+
             return {
                 ...state,
                 filter_products: tempFilterProduct,
             };
 
+           
 
+        case "CLEAR_FILTERS": // 기본 filter data 전달
+            return {
+                ...state,
+                filters:{
+                ...state.filters,
+                text: "",
+                category: "all",
+                company: "all",
+                color:"all",
+                maxPrice: 0,
+                price: state.filters.maxPrice,
+                minPrice: state.filters.maxPrice,
+                },
+            };
 
-        default: return state;
+        default: 
+            return state;
     };
-
 };
 
 export default filterReducer;
