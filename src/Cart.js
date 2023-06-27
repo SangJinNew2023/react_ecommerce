@@ -2,6 +2,7 @@ import React from 'react'
 import styled from "styled-components";
 
 const Cart = () => {
+  // const { cart } = useCartContext();
   return(
     <Wrapper>
       <h1>Cart page</h1>

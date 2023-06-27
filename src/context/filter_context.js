@@ -47,6 +47,8 @@ export const FilterContextProvider = ({children}) => {
 
     //update the filter values
     const updateFilterValue =(event) => {
+        console.log("event.target.name", event.target.name)
+        console.log("event.target.value", event.target.value)
         let name = event.target.name;
         let value = event.target.value;
 

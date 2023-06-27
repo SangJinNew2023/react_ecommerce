@@ -18,25 +18,27 @@ const FilterSection = () => {
     let newVal = data.map((curElem) =>{
       return curElem[attr];
     });
+    console.log(all_products)
     console.log(newVal);
 
     //"All"값과 new Set()을 이용해 제품들의 컬러 정보를 모두 합치고(중복은 제거) 반환
     //빈 배열에 .concat을 통해 ...newVal의 값을 합쳐서 넣는다.
-    //.concat이 아닌 flat()을 이용하여 간다하게 만듬
+    //.concat이 아닌 flat()을 이용하여 간단하게 만듬
     //하위배열을 이어 붙여 새로운 배열을 반환
     if (attr === "colors") {
       // return (["All", ...new Set([].concat(...newVal))]);
       newVal = newVal.flat()
+      console.log(newVal)
     }
-    return (newVal = ["all", ...new Set(newVal)]) 
+    return (newVal = ["all", ...new Set(newVal)])
   };
 
   //we need unique data for category, company
   const categoryData = getUniqueData(all_products, "category");
   const companyData = getUniqueData(all_products, "company");
   const colorsData = getUniqueData(all_products, "colors");
-  // console.log(colorsData);
-
+  console.log(companyData)
+  
   return (
     <Wrapper>
       <div className="filter-search">
@@ -92,6 +94,7 @@ const FilterSection = () => {
         <h3>Colors</h3>
         <div className="filter-color-style"> 
           { colorsData.map((curColor, index) => {
+            console.log(curColor);
               if (curColor === "all") {
                 return (
                   <button
@@ -105,6 +108,8 @@ const FilterSection = () => {
                   </button>
               )
             };
+            console.log(color, curColor)
+
             return (
               <button
                 key={index}
@@ -247,4 +252,4 @@ const  Wrapper = styled.section `
       color: #000;
     }
 `;
-export default FilterSection
+export default FilterSection;
