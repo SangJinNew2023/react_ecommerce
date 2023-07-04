@@ -4,17 +4,16 @@ import {useCartContext} from "./context/cart_context";
 import CartItem from "./components/CartItem";
 import { NavLink } from "react-router-dom";
 import { Button } from "./styles/Button";
-import FormatPrice from "./helpers/FormatPrice";
+// import FormatPrice from "./helpers/FormatPrice";
 
 const Cart = () => {
   const { cart, clearCart } = useCartContext();
+  console.log("cart:", cart)
 
   if (cart.length === 0) {
     return (
       <EmptyDiv>
-        <div>
         <h3>No Cart In Item</h3>
-        </div>
       </EmptyDiv>
     );
   }
@@ -22,6 +21,7 @@ const Cart = () => {
   return(
     <Wrapper>
       <div className="container">
+
         <div className="cart_heading grid grid-five-column">
           <p>Item</p>
           <p className="cart_hide">Price</p>
@@ -29,19 +29,24 @@ const Cart = () => {
           <p className="cart-hide">Subtotal</p>
           <p>Remove</p>
         </div>
+
         <hr />
+
         <div className="cart-item">
           {cart.map((curElem) => {
             return <CartItem key={curElem.id} { ...curElem} />;
           })}
         </div>
+
         <hr />
+
         <div className="cart-two-button">
           <NavLink to="/products">
             <Button> conitnue Shopping</Button>
           </NavLink>
           <Button className="btn btn-clear" onClick={clearCart}>clear cart</Button>
         </div>
+
       </div>
     </Wrapper>
   ) 

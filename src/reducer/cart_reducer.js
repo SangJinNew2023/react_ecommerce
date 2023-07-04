@@ -1,4 +1,3 @@
-import React from 'react'
 
 const cartReducer = (state, action) => {
   if (action.type === "ADD_TO_CART") {
@@ -10,7 +9,7 @@ const cartReducer = (state, action) => {
     );
 
     if (existingProduct) {
-      let updateProduct = state.cart.map((curElem) =>{
+      let updatedProduct = state.cart.map((curElem) =>{
         if(curElem.id === id + color) {
           let newAmount = curElem.amount + amount;
 
@@ -27,7 +26,7 @@ const cartReducer = (state, action) => {
       });
       return {
         ...state,
-        cart: updateProduct,
+        cart: updatedProduct,
       };
     } else {
       let cartProduct = {
@@ -35,19 +34,21 @@ const cartReducer = (state, action) => {
         name : product.name,
         color,
         amount,
-        image : product.image[0].rul,
+        image : product.image[0].url,
         price: product.price,
         max: product.stock,
       };
+
       return {
         ...state,
         cart: [...state.cart, cartProduct],
       };
-    }  
-  }
+    };
+  };
+
   //to set the increment and decrement
   if(action.type ==="SET_DECREMENT") {
-    let updatedProudct = state.cart.map((curElem) => {
+    let updatedProduct = state.cart.map((curElem) => {
       if (curElem.id === action.payload) {
         let decAmount = curElem.amount - 1;
 
@@ -65,12 +66,11 @@ const cartReducer = (state, action) => {
     });
     return {
       ...state,
-      cart: updatedProudct,
+      cart: updatedProduct,
     };
   };
-
   if (action.type ==="SET_INCREMENT") {
-    let updatedProudct = state.cart.map((curElem) => {
+    let updatedProduct = state.cart.map((curElem) => {
       if(curElem.id === action.payload) {
         let incAmount = curElem.amount + 1;
 
@@ -88,13 +88,15 @@ const cartReducer = (state, action) => {
     });
     return {
       ...state,
-      cart: updatedProudct,
+      cart: updatedProduct,
     }
   };
 
+  //to remove item from cart
   if (action.type === "REMOVE_ITEM") {
     let updatedCart = state.cart.filter(
-      (curItem) => curItem.id !== action.payload)
+      (curItem) => curItem.id !== action.payload
+    );
     return {
       ...state,
       cart: updatedCart,
@@ -109,18 +111,21 @@ const cartReducer = (state, action) => {
     }
   }
 
-  if (CART_TOTAL_ITEM) {
+//reduce(누적값, 현재값, 인덱스, 요소)=>{return}, 초기값)
+  if (action.type === "CART_TOTAL_ITEM") {
     let updatedItemVal = state.cart.reduce((initialVal, curElem) => {
       let { amount } = curElem;
+
       initialVal = initialVal + amount;
       return initialVal;
     }, 0);
+
     return {
       ... state,
-      total_item,
-    }
-  }
+      total_item: updatedItemVal,
+    };
+  };
   return state;
 }
 
-export default cartReducer
+export default cartReducer;

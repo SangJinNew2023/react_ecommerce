@@ -49,7 +49,7 @@ const AddToCart = ({ product }) => { //from SigleProducts.js
         setIncrease={setIncrease}
         />
         <NavLink to="/cart"
-            onClick={() => AddToCart(id, color, amount, product)}>
+            onClick={() => addToCart(id, color, amount, product)}>
             <Button className="btn">Add To Cart</Button>
         </NavLink>
     </Wrapper>
