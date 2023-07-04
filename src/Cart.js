@@ -4,6 +4,7 @@ import {useCartContext} from "./context/cart_context";
 import CartItem from "./components/CartItem";
 import { NavLink } from "react-router-dom";
 import { Button } from "./styles/Button";
+import FormatPrice from "./helpers/FormatPrice";
 
 const Cart = () => {
   const { cart, clearCart } = useCartContext();
@@ -11,11 +12,13 @@ const Cart = () => {
   if (cart.length === 0) {
     return (
       <EmptyDiv>
-        <h3>No Cart in Item</h3>
-
+        <div>
+        <h3>No Cart In Item</h3>
+        </div>
       </EmptyDiv>
-    )
+    );
   }
+
   return(
     <Wrapper>
       <div className="container">
@@ -41,8 +44,8 @@ const Cart = () => {
         </div>
       </div>
     </Wrapper>
-    ) 
-  };
+  ) 
+};
 
 const EmptyDiv = styled.div`
   display:grid;

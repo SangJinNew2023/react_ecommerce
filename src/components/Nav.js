@@ -4,6 +4,9 @@ import { NavLink } from "react-router-dom";
 import { FiShoppingCart } from "react-icons/fi";
 
 const Nav = () => {
+  const [menuIcon, setMenuIcon] = useState();
+  const { total_item} = useCartContext();
+  
     const Nav = styled.nav`
     .navbar-lists {
       display: flex;
