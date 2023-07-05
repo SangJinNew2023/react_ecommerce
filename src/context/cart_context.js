@@ -53,6 +53,8 @@ const CartProvider = ({children}) => {
 //JSON.stringify JS값이나 객체를 JSON문자열로 변환
 useEffect(()=> {
   // dispatch({type: "CART_TOTAL_ITEM"})
+  // dispatch({type:"CART_TOTAL_PRICE"})
+  dispatch({ type:"CART_ITEM_TOTAL_PRICE"})
   localStorage.setItem("thapaCart", JSON.stringify(state.cart));
 }, []);
 
