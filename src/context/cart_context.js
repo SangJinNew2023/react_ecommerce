@@ -6,7 +6,6 @@ const CartContext = createContext();
 
 const getLocalCartData = () => {
   let localCartData = localStorage.getItem("thapaCart")
-
   if (localCartData === []) {
     return [];
   } else {
@@ -26,7 +25,7 @@ const CartProvider = ({children}) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const addToCart = (id, color, amount, product) => {
-    dispatch({type:"ADD_TO_CART", payload: { id, color, amount, product}});
+    dispatch({type:"ADD_TO_CART", payload: { id, color, amount, product }});
   };
 
   //increment and decrement the product
@@ -54,9 +53,9 @@ const CartProvider = ({children}) => {
 useEffect(()=> {
   // dispatch({type: "CART_TOTAL_ITEM"})
   // dispatch({type:"CART_TOTAL_PRICE"})
-  dispatch({ type:"CART_ITEM_TOTAL_PRICE"})
+  dispatch({ type: "CART_ITEM_PRICE_TOTAL" }) //2개의 dispatch를 한개로 만듬
   localStorage.setItem("thapaCart", JSON.stringify(state.cart));
-}, []);
+}, [state.cart]);
 
   return (
   <CartContext.Provider 

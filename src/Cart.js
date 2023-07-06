@@ -8,8 +8,7 @@ import FormatPrice from "./helpers/FormatPrice";
 
 const Cart = () => {
   const { cart, clearCart, total_price, shipping_fee } = useCartContext();
-  console.log("cart:", cart)
-
+  console.log("total_price", total_price);
   if (cart.length === 0) {
     return (
       <EmptyDiv>
@@ -29,28 +28,31 @@ const Cart = () => {
           <p className="cart-hide">Subtotal</p>
           <p>Remove</p>
         </div>
-
         <hr />
-
         <div className="cart-item">
           {cart.map((curElem) => {
             return <CartItem key={curElem.id} { ...curElem} />;
           })}
         </div>
-
         <hr />
-
         <div className="cart-two-button">
           <NavLink to="/products">
             <Button> conitnue Shopping</Button>
           </NavLink>
           <Button className="btn btn-clear" onClick={clearCart}>clear cart</Button>
         </div>
+
          {/* order total_amount*/}
         <div className="order-total--amount">
           <div className="order-total--subdata">
             <div>
               <p>subtotal:</p>
+              <p>
+                <FormatPrice price={total_price} />
+              </p>
+            </div>
+            <div>
+              <p>shipping fee:</p>
               <p>
                 <FormatPrice price={shipping_fee} />
               </p>
@@ -59,11 +61,12 @@ const Cart = () => {
             <div>
               <p>order total:</p>
               <p>
-                <formatPrice price={shipping_fee + total_price} />
+                <FormatPrice price={shipping_fee + total_price} />
               </p>
             </div>
           </div>
         </div>
+        
       </div>
     </Wrapper>
   ) 
